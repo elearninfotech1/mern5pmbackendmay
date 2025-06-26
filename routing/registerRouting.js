@@ -9,7 +9,7 @@ registerRouting.post("/register", async (req, res) => {
     const senddata = new Register({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password, 10,
+      password: req.body.password,
       phone: req.body.phone,
       address: req.body.address,
     });
