@@ -1,6 +1,5 @@
 const express = require("express");
 const Register = require("../modal/registerModel");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const loginMiddleware = require("../loginMiddleware");
 const registerRouting = express.Router();
@@ -10,7 +9,7 @@ registerRouting.post("/register", async (req, res) => {
     const senddata = new Register({
       name: req.body.name,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 10),
+      password: req.body.password, 10,
       phone: req.body.phone,
       address: req.body.address,
     });
@@ -27,7 +26,7 @@ registerRouting.post("/login", async (req, res) => {
     const exists = await Register.findOne({ email: email });
     if (!exists) {
       res.send("no user found");
-    } else if (!bcrypt.compareSync(password, exists.password)) {
+    } else if (exists.password!== password)) {
       res.send("Invalid");
     } else {
       let payload = {
