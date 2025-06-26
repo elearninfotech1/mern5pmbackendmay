@@ -26,7 +26,7 @@ registerRouting.post("/login", async (req, res) => {
     const exists = await Register.findOne({ email: email });
     if (!exists) {
       res.send("no user found");
-    } else if (exists.password!== password)) {
+    } else if (exists.password!== password) {
       res.send("Invalid");
     } else {
       let payload = {
